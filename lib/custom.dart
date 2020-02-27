@@ -7,6 +7,7 @@ class InputDataType {
     static const String oneUseStopwatch = 'One Use Stopwatch';
     static const String checkbox = 'Checkbox';
     static const String gridButton = 'Grid Button';
+    static const String counter = 'Counter';
 }
 
 class InputData {
@@ -145,6 +146,75 @@ List<InputData> deepspace2019 = [
     InputData(
         id: 'Defense Notes',
         type: InputDataType.textBox,
+    ),
+    InputData(
+        id: 'Notes',
+        type: InputDataType.textBox,
+    ),
+];
+
+List<InputData> infiniterecharge2020 = [
+    InputData(
+        id: 'Team Number',
+        type: InputDataType.textBox,
+    ),
+    InputData(
+        id: 'Ball Count of Lower Hole / Teleop',
+        type: InputDataType.counter,
+    ),
+    InputData(
+        id: 'Ball Count of Upper Hole / Teleop',
+        type: InputDataType.counter,
+    ),
+    InputData(
+        id: 'Ball Count of Small Hole / Teleop',
+        type: InputDataType.counter,
+    ),
+    InputData(
+        id: 'Ball Count of Lower Hole / Autonomous',
+        type: InputDataType.counter,
+    ),
+    InputData(
+        id: 'Ball Count of Upper Hole / Autonomous',
+        type: InputDataType.counter,
+    ),
+    InputData(
+        id: 'Ball Count of Small Hole / Autonomous',
+        type: InputDataType.counter,
+    ),
+    InputData(
+        id: 'Staying in Balance',
+        type: InputDataType.checkbox,
+    ),
+    InputData(
+        id: 'Can Adjust Balance',
+        type: InputDataType.checkbox,
+    ),
+    InputData(
+        id: 'Moved Away From Line',
+        type: InputDataType.checkbox,
+    ),
+    InputData(
+        id: 'Did Trench Run',
+        type: InputDataType.checkbox,
+    ),
+    InputData(
+        id: 'Bar Climb Time',
+        type: InputDataType.oneUseStopwatch,
+        selection: [
+            'Start the counter',
+            'End the counter',
+            '%counter',
+        ],
+    ),
+    InputData(
+        id: 'Control Panel',
+        type: InputDataType.textSelector,
+        selection: [
+            'None',
+            '3 lap',
+            '3 lap with precise alignment'
+        ],
     ),
     InputData(
         id: 'Notes',

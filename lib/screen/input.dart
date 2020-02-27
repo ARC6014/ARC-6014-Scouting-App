@@ -33,7 +33,7 @@ class _InputScreenState extends State<InputScreen> {
             body: Container(
                 decoration: scaffoldDecoration(context),
                 child: ListView.builder(
-                    itemCount: deepspace2019.length + 1,
+                    itemCount: infiniterecharge2020.length + 1,
                     itemBuilder: (BuildContext context, int index) {
                         input.stopwatches['Stopwatch'] ??= Stopwatch();
                         if (index == 0) {
@@ -75,7 +75,7 @@ class _InputScreenState extends State<InputScreen> {
                                 ),
                             );
                         }
-                        InputData data = deepspace2019[index - 1];
+                        InputData data = infiniterecharge2020[index - 1];
                         Widget result = Placeholder(fallbackHeight: 30,);
                         
                         switch (data.type) {
@@ -252,6 +252,37 @@ class _InputScreenState extends State<InputScreen> {
                                                 input.checkbox[data.id] = value;
                                             });
                                         },
+                                    ),
+                                );
+                                break;
+                            case InputDataType.counter:
+                                result = Padding(
+                                    padding: EdgeInsets.all(16),
+                                    child: LabeledWidget(
+                                        text: Text(
+                                            data.id.lang(lang),
+                                            style: subTextStyle(context),
+                                        ),
+                                        child: FlatButton(
+                                            shape: CircleBorder(),
+                                            color: Theme
+                                              .of(context)
+                                              .primaryColorLight,
+                                            child: Padding(
+                                                padding:  EdgeInsets.all(16),
+                                                child: Text(
+                                                    input.counter[data.id] == null ? '0' : input.counter[data.id].toString(),
+                                                    style: largeTextStyle(context),
+                                                ),
+                                            ),
+                                            onPressed: () {
+                                                setState(() {
+                                                    input.counter[data.id] ??= 0;
+                                                    ++input.counter[data.id];
+                                                });
+                                            },
+                                        
+                                        ),
                                     ),
                                 );
                                 break;

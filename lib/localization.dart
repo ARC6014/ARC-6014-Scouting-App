@@ -119,6 +119,51 @@ HashMap<String, HashMap<String, String>> local = HashMap<String, HashMap<String,
     '%counter': HashMap<String, String>.from({
         'tr': '%counter',
     }),
+    'Ball Count of Lower Hole / Teleop': HashMap<String, String>.from({
+        'tr': 'Alt Deliğin Top Miktarı / Teleop',
+    }),
+    'Ball Count of Upper Hole / Teleop': HashMap<String, String>.from({
+        'tr': 'Üst Deliğin Top Miktarı / Teleop',
+    }),
+    'Ball Count of Small Hole / Teleop': HashMap<String, String>.from({
+        'tr': 'Küçük Deliğin Top Miktarı / Teleop',
+    }),
+    'Ball Count of Lower Hole / Autonomous': HashMap<String, String>.from({
+        'tr': 'Alt Deliğin Top Miktarı / Otonom',
+    }),
+    'Ball Count of Upper Hole / Autonomous': HashMap<String, String>.from({
+        'tr': 'Üst Deliğin Top Miktarı / Otonom',
+    }),
+    'Ball Count of Small Hole / Autonomous': HashMap<String, String>.from({
+        'tr': 'Küçük Deliğin Top Miktarı / Otonom',
+    }),
+    'Staying in Balance': HashMap<String, String>.from({
+        'tr': 'Dengede Durabilme',
+    }),
+    'Can Adjust Balance': HashMap<String, String>.from({
+        'tr': 'Dengeyi Ayarlayabilme',
+    }),
+    'Moved Away From Line': HashMap<String, String>.from({
+        'tr': 'Çizgiyi Geçebilme',
+    }),
+    'Did Trench Run': HashMap<String, String>.from({
+        'tr': 'Trench Run Yapımı',
+    }),
+    'Bar Climb Time': HashMap<String, String>.from({
+        'tr': 'Demir Tırmanma Süresi',
+    }),
+    'Control Panel': HashMap<String, String>.from({
+        'tr': 'Kontrol Paneli',
+    }),
+    'None': HashMap<String, String>.from({
+        'tr': 'Hiç',
+    }),
+    '3 lap': HashMap<String, String>.from({
+        'tr': '3 tur',
+    }),
+    '3 lap with precise alignment': HashMap<String, String>.from({
+        'tr': 'İnce ayarla 3 tur',
+    }),
 });
 
 extension LangParsing on String {

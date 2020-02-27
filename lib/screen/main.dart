@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scouting_app/decoration.dart';
+import 'package:scouting_app/file.dart';
 import 'package:scouting_app/screen/input.dart';
 import 'package:scouting_app/screen/qr.dart';
 import 'package:scouting_app/style.dart';
@@ -124,5 +125,18 @@ class _MainScreenState extends State<MainScreen> {
                 ),
             ),
         );
+    }
+
+    @override
+    void initState() {
+        super.initState();
+        try {
+            readFile().then((value) {
+                writeFile(value);
+            });
+        }
+        catch (e) {
+            writeFile('');
+        }
     }
 }

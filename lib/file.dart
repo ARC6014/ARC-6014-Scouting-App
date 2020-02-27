@@ -34,8 +34,6 @@ Future writeFile(String text) async {
 
 void writeInput(Input input) {
     readFile().then((value) {
-        writeFile(
-          value + '/              /\n' + input.toFileString() ??
-            '' + '/              /\n' + input.toFileString());
+        writeFile(value + '/              /\n' + input.toFileString());
     });
 }

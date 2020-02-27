@@ -10,6 +10,7 @@ class Input {
     HashMap<String, List<Duration>> gridButtonStart;
     HashMap<String, List<Duration>> gridButtonEnd;
     HashMap<String, bool> checkbox;
+    HashMap<String, int> counter;
     
     HashMap<String, int> indexes;
     HashMap<String, Stopwatch> stopwatches;
@@ -24,6 +25,7 @@ class Input {
         gridButtonStart = HashMap<String, List<Duration>>();
         gridButtonEnd = HashMap<String, List<Duration>>();
         checkbox = HashMap<String, bool>();
+        counter = HashMap<String, int>();
         
         indexes = HashMap<String, int>();
         stopwatches = HashMap<String, Stopwatch>();
@@ -41,6 +43,7 @@ class Input {
           "gridButtonStart: ${gridButtonStart.toString()}\n"
           "gridButtonEnd: ${gridButtonEnd.toString()}\n"
           "checkbox: ${checkbox.toString()}\n\n"
+          "counter: ${counter.toString()}\n\n"
           "Variables: \n"
           "indexes: ${indexes.toString()}\n\n\n"
           "stopwatches: ${stopwatches.toString()}\n\n\n";
@@ -93,6 +96,9 @@ class Input {
             result += '\n';
         });
         checkbox.forEach((key, value) {
+            result += key + '\n* ' + value.toString() + '\n';
+        });
+        counter.forEach((key, value) {
             result += key + '\n* ' + value.toString() + '\n';
         });
         return result;
