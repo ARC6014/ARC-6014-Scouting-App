@@ -27,7 +27,8 @@ class _TextInputState extends State<TextInput> {
             children: <Widget>[
                 Text(locale.get(widget.title)),
                 TextField(
-                    keyboardType: TextInputType.text,
+                    readOnly: true,
+                    showCursor: true,
                     controller: controller,
                 ),
             ],
