@@ -31,7 +31,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-    Map values = {
+    Map<String, Value> values = {
         'Stopwatch': Value<Duration>(),
         'Team Number': Value<String>(),
         'Ball Count of Lower Hole / Teleop': Value<int>(),
@@ -55,6 +55,13 @@ class _MyHomePageState extends State<MyHomePage> {
         return Scaffold(
             appBar: AppBar(
                 title: Text(widget.title),
+                actions: <Widget>[
+                    IconButton(
+                        onPressed: () {
+                            print(values['Ball Count of Lower Hole / Teleop'].value);
+                        }, icon: Icon(Icons.print),
+                    )
+                ],
             ),
             body: Center(
                 child: ListView(
