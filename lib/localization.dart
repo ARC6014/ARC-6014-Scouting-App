@@ -166,6 +166,9 @@ HashMap<String, HashMap<Language, String>> local = HashMap.from({
     '3 lap with precise alignment': HashMap.from({
         Language.tr: 'İnce ayarla 3 tur',
     }),
+    'Disabled': HashMap.from({
+        Language.tr: 'Kapalı',
+    }),
 });
 /*
 extension LangParsing on String {

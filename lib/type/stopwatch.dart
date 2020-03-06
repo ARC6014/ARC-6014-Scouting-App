@@ -6,16 +6,16 @@ import 'package:scouting_app_rewrite/type/value.dart';
 
 class StopwatchInput extends StatefulWidget implements Input {
     final String title;
-    final Values<Duration> values;
+    final Value<Duration> value;
     
-    const StopwatchInput({Key key, this.title, this.values}) : super(key: key);
+    const StopwatchInput({Key key, this.title, this.value}) : super(key: key);
     
     @override
     _StopwatchInputState createState() => _StopwatchInputState();
     
     @override
     Map<String, dynamic> toJson() {
-        return {title: values.values.map((e) => e.toString()).toList()};
+        return {title: value.value.toString()};
     }
 }
 
@@ -23,7 +23,7 @@ class _StopwatchInputState extends State<StopwatchInput> {
     LocaleString locale = LocaleString();
     Stopwatch stopwatch = Stopwatch();
     
-    List<String> text = ['Start the counter', 'End the counter'];
+    List<String> text = ['Start the counter', 'End the counter', 'Disabled'];
     int index = 0;
     
     @override
@@ -32,18 +32,18 @@ class _StopwatchInputState extends State<StopwatchInput> {
             children: <Widget>[
                 Text(locale.get(widget.title)),
                 FlatButton(
-                    onPressed: () {
+                    onPressed: index < 2 ? () {
                         if (index == 0) {
                             index = 1;
                             stopwatch.start();
                         }
                         if (index == 1) {
-                            index = 0;
                             stopwatch.stop();
-                            widget.values.add(stopwatch.elapsed);
+                            widget.value.set(stopwatch.elapsed);
                             stopwatch.reset();
+                            index = 2;
                         }
-                    },
+                    } : null,
                     child: Text(locale.get(text[index])),
                 ),
             ],
