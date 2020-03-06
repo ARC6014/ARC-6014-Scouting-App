@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:scouting_app_rewrite/localization.dart';
 import 'package:scouting_app_rewrite/type/input.dart';
+import 'package:scouting_app_rewrite/type/value.dart';
 
-List<Duration> _values = [];
 
 class StopwatchInput extends StatefulWidget implements Input {
     final String title;
+    final Values<Duration> values;
     
-    const StopwatchInput({Key key, this.title}) : super(key: key);
+    const StopwatchInput({Key key, this.title, this.values}) : super(key: key);
     
     @override
     _StopwatchInputState createState() => _StopwatchInputState();
     
     @override
     Map<String, dynamic> toJson() {
-        return {title: _values.map((e) => e.toString()).toList()};
+        return {title: values.values.map((e) => e.toString()).toList()};
     }
 }
 
@@ -39,7 +40,7 @@ class _StopwatchInputState extends State<StopwatchInput> {
                         if (index == 1) {
                             index = 0;
                             stopwatch.stop();
-                            _values.add(stopwatch.elapsed);
+                            widget.values.add(stopwatch.elapsed);
                             stopwatch.reset();
                         }
                     },

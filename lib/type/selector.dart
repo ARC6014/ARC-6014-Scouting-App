@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:scouting_app_rewrite/localization.dart';
 import 'package:scouting_app_rewrite/type/input.dart';
+import 'package:scouting_app_rewrite/type/value.dart';
 
-String _value;
 
 
 class SelectorInput extends StatefulWidget implements Input {
     final String title;
     final List<String> choices;
+    final Value<String> value;
     
-    SelectorInput({Key key, this.title, this.choices}) : super(key: key);
+    SelectorInput({Key key, this.title, this.choices, this.value}) : super(key: key);
     
     @override
     _SelectorInputState createState() => _SelectorInputState();
     
     @override
     Map<String, dynamic> toJson() {
-        return {title: _value};
+        return {title: value.value};
     }
 }
 
@@ -31,10 +32,10 @@ class _SelectorInputState extends State<SelectorInput> {
                 Text(locale.get(widget.title)),
                 DropdownButton<String>(
                     isExpanded: true,
-                    value: _value,
+                    value: widget.value.value,
                     onChanged: (value) {
                         setState(() {
-                            _value = value;
+                            widget.value.set(value);
                         });
                     },
                     items: widget.choices.map<DropdownMenuItem<String>>((value) {

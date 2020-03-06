@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:scouting_app_rewrite/localization.dart';
 import 'package:scouting_app_rewrite/type/input.dart';
-
-bool _value = false;
+import 'package:scouting_app_rewrite/type/value.dart';
 
 class CheckboxInput extends StatefulWidget implements Input {
     final String title;
+    final Value<bool> value;
     
-    const CheckboxInput({Key key, this.title}) : super(key: key);
+    const CheckboxInput({Key key, this.title, this.value}) : super(key: key);
     
     @override
     _CheckboxInputState createState() => _CheckboxInputState();
     
     @override
     Map<String, dynamic> toJson() {
-        return {title: _value};
+        return {title: value.value};
     }
 }
 
@@ -29,10 +29,10 @@ class _CheckboxInputState extends State<CheckboxInput> {
                 Checkbox(
                     onChanged: (bool value) {
                         setState(() {
-                            _value = value;
+                            widget.value.set(value);
                         });
                     },
-                    value: _value,
+                    value: widget.value.value,
                 ),
             ],
         );
