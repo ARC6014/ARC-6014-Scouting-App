@@ -14,7 +14,8 @@ class _TextInputState extends State<TextInput> {
     LocaleString locale = LocaleString();
     TextEditingController controller = TextEditingController();
 
-
+    get value => controller.value;
+    
     @override
     void dispose() {
         controller.dispose();
