@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:scouting_app_rewrite/localization.dart';
+import 'package:scouting_app_rewrite/type/input.dart';
+import 'package:scouting_app_rewrite/type/value.dart';
 
-class CounterInput extends StatefulWidget {
+class CounterInput extends StatefulWidget implements Input {
     final String title;
+    final Value<int> value;
     
-    const CounterInput({Key key, this.title}) : super(key: key);
+    const CounterInput({Key key, this.title, this.value}) : super(key: key);
     
     @override
     _CounterInputState createState() => _CounterInputState();
+    
+    @override
+    Map<String, dynamic> toJson() {
+        return {title: value.value};
+    }
 }
 
 class _CounterInputState extends State<CounterInput> {
     LocaleString locale = LocaleString();
-    int value = 0;
     
     @override
     Widget build(BuildContext context) {
@@ -23,12 +30,20 @@ class _CounterInputState extends State<CounterInput> {
                     children: <Widget>[
                         IconButton(
                             icon: Icon(Icons.arrow_downward),
-                            onPressed: () {setState(() {--value;});},
+                            onPressed: () {
+                                setState(() {
+                                    widget.value.set(widget.value.value - 1);
+                                });
+                            },
                         ),
-                        Text(value.toString()),
+                        Text(widget.value.value.toString()),
                         IconButton(
                             icon: Icon(Icons.arrow_upward),
-                            onPressed: () {setState(() {++value;});},
+                            onPressed: () {
+                                setState(() {
+                                    widget.value.set(widget.value.value + 1);
+                                });
+                            },
                         ),
                     ],
                 )
