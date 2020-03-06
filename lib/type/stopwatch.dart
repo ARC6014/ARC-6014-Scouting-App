@@ -33,16 +33,18 @@ class _StopwatchInputState extends State<StopwatchInput> {
                 Text(locale.get(widget.title)),
                 FlatButton(
                     onPressed: index < 2 ? () {
-                        if (index == 0) {
-                            index = 1;
-                            stopwatch.start();
-                        }
-                        if (index == 1) {
-                            stopwatch.stop();
-                            widget.value.set(stopwatch.elapsed);
-                            stopwatch.reset();
-                            index = 2;
-                        }
+                        setState(() {
+                            if (index == 0) {
+                                index = 1;
+                                stopwatch.start();
+                            }
+                            else if (index == 1) {
+                                stopwatch.stop();
+                                widget.value.set(stopwatch.elapsed);
+                                stopwatch.reset();
+                                index = 2;
+                            }
+                        });
                     } : null,
                     child: Text(locale.get(text[index])),
                 ),

@@ -20,6 +20,11 @@ class CounterInput extends StatefulWidget implements Input {
 
 class _CounterInputState extends State<CounterInput> {
     LocaleString locale = LocaleString();
+
+    @override
+    void initState() {
+        widget.value.set(0);
+    }
     
     @override
     Widget build(BuildContext context) {

@@ -20,7 +20,13 @@ class CheckboxInput extends StatefulWidget implements Input {
 
 class _CheckboxInputState extends State<CheckboxInput> {
     LocaleString locale = LocaleString();
-    
+
+
+    @override
+    void initState() {
+        widget.value.set(false);
+    }
+
     @override
     Widget build(BuildContext context) {
         return Row(

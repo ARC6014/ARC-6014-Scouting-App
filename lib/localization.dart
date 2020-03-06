@@ -169,6 +169,9 @@ HashMap<String, HashMap<Language, String>> local = HashMap.from({
     'Disabled': HashMap.from({
         Language.tr: 'Kapalı',
     }),
+    'Stopwatch': HashMap.from({
+        Language.tr: 'Sayaç',
+    }),
 });
 /*
 extension LangParsing on String {
