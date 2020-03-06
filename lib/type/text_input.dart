@@ -25,9 +25,7 @@ class _TextInputState extends State<TextInput> {
     Widget build(BuildContext context) {
         return Column(
             children: <Widget>[
-                Text(
-                    locale.get(widget.title),
-                ),
+                Text(locale.get(widget.title)),
                 TextField(
                     keyboardType: TextInputType.text,
                     controller: controller,
