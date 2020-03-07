@@ -26,10 +26,22 @@ class _StopwatchInputState extends State<StopwatchInput> {
         return Card(
             child: Padding(
                 padding: EdgeInsets.all(8.0),
-                child: Column(
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                        Text(locale.get(widget.title)),
-                        FlatButton(
+                        Text(
+                            locale.get(widget.title),
+                            style: Theme
+                              .of(context)
+                              .textTheme
+                              .headline6,
+                        ),
+                        RaisedButton(
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4))),
+                            color: Theme
+                              .of(context)
+                              .primaryColorLight,
+                            elevation: 4,
                             onPressed: index < 2 ? () {
                                 setState(() {
                                     if (index == 0) {
@@ -44,7 +56,13 @@ class _StopwatchInputState extends State<StopwatchInput> {
                                     }
                                 });
                             } : null,
-                            child: Text(locale.get(text[index])),
+                            child: Text(
+                                locale.get(text[index]),
+                                style: Theme
+                                  .of(context)
+                                  .textTheme
+                                  .button,
+                            ),
                         ),
                     ],
                 ),
