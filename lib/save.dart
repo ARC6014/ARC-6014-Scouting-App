@@ -111,7 +111,14 @@ class Save {
     void getClipboard(BuildContext context) {
         Clipboard.setData(ClipboardData(text: html.window.localStorage['data']));
         Scaffold.of(context).showSnackBar(SnackBar(
-            content: Text("Copied data to clipboard"),
+            backgroundColor: Colors.grey,
+            content: Text(
+                "Copied data to clipboard",
+                style: Theme
+                  .of(context)
+                  .textTheme
+                  .subtitle2,
+            ),
         ));
     }
     
@@ -119,8 +126,15 @@ class Save {
         String temp = html.window.localStorage['data'];
         html.window.localStorage['data'] = '';
         Scaffold.of(context).showSnackBar(SnackBar(
+            backgroundColor: Colors.grey,
             duration: Duration(seconds: 6),
-            content: Text("Erased all data stored"),
+            content: Text(
+                "Erased all data stored",
+                style: Theme
+                  .of(context)
+                  .textTheme
+                  .subtitle2,
+            ),
             action: SnackBarAction(
                 label: 'Undo',
                 onPressed: () {
