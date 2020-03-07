@@ -14,35 +14,40 @@ class CounterInput extends StatefulWidget {
 }
 
 class _CounterInputState extends State<CounterInput> {
-
+    
     
     @override
     Widget build(BuildContext context) {
-        return Column(
-            children: <Widget>[
-                Text(locale.get(widget.title)),
-                Row(
+        return Card(
+            child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Column(
                     children: <Widget>[
-                        IconButton(
-                            icon: Icon(Icons.arrow_downward),
-                            onPressed: () {
-                                setState(() {
-                                    widget.value.set(widget.value.value - 1);
-                                });
-                            },
-                        ),
-                        Text(widget.value.value.toString()),
-                        IconButton(
-                            icon: Icon(Icons.arrow_upward),
-                            onPressed: () {
-                                setState(() {
-                                    widget.value.set(widget.value.value + 1);
-                                });
-                            },
-                        ),
+                        Text(locale.get(widget.title)),
+                        Row(
+                            children: <Widget>[
+                                IconButton(
+                                    icon: Icon(Icons.arrow_downward),
+                                    onPressed: () {
+                                        setState(() {
+                                            widget.value.set(widget.value.value - 1);
+                                        });
+                                    },
+                                ),
+                                Text(widget.value.value.toString()),
+                                IconButton(
+                                    icon: Icon(Icons.arrow_upward),
+                                    onPressed: () {
+                                        setState(() {
+                                            widget.value.set(widget.value.value + 1);
+                                        });
+                                    },
+                                ),
+                            ],
+                        )
                     ],
-                )
-            ],
+                ),
+            ),
         );
     }
 }

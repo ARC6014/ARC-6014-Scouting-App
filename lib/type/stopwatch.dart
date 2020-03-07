@@ -3,7 +3,7 @@ import 'package:scouting_app_rewrite/localization.dart';
 import 'package:scouting_app_rewrite/type/value.dart';
 
 
-class StopwatchInput extends StatefulWidget{
+class StopwatchInput extends StatefulWidget {
     final String title;
     final Value<Duration> value;
     
@@ -23,27 +23,32 @@ class _StopwatchInputState extends State<StopwatchInput> {
     @override
     Widget build(BuildContext context) {
         if (widget.value.value == Duration() && index == 2) index = 0;
-        return Column(
-            children: <Widget>[
-                Text(locale.get(widget.title)),
-                FlatButton(
-                    onPressed: index < 2 ? () {
-                        setState(() {
-                            if (index == 0) {
-                                index = 1;
-                                stopwatch.start();
-                            }
-                            else if (index == 1) {
-                                stopwatch.stop();
-                                widget.value.set(stopwatch.elapsed);
-                                stopwatch.reset();
-                                index = 2;
-                            }
-                        });
-                    } : null,
-                    child: Text(locale.get(text[index])),
+        return Card(
+            child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Column(
+                    children: <Widget>[
+                        Text(locale.get(widget.title)),
+                        FlatButton(
+                            onPressed: index < 2 ? () {
+                                setState(() {
+                                    if (index == 0) {
+                                        index = 1;
+                                        stopwatch.start();
+                                    }
+                                    else if (index == 1) {
+                                        stopwatch.stop();
+                                        widget.value.set(stopwatch.elapsed);
+                                        stopwatch.reset();
+                                        index = 2;
+                                    }
+                                });
+                            } : null,
+                            child: Text(locale.get(text[index])),
+                        ),
+                    ],
                 ),
-            ],
+            ),
         );
     }
 }
