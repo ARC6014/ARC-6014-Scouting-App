@@ -27,7 +27,13 @@ class _TextInputState extends State<TextInput> {
                 padding: EdgeInsets.all(8.0),
                 child: Column(
                     children: <Widget>[
-                        Text(locale.get(widget.title)),
+                        Text(
+                            locale.get(widget.title),
+                            style: Theme
+                              .of(context)
+                              .textTheme
+                              .headline6,
+                        ),
                         TextField(
                             readOnly: true,
                             showCursor: true,
@@ -37,6 +43,11 @@ class _TextInputState extends State<TextInput> {
                             },
                             onTap: widget.onTap,
                             controller: controller,
+                            style: Theme
+                              .of(context)
+                              .textTheme
+                              .subtitle1,
+                            maxLines: null,
                         ),
                     ],
                 ),
