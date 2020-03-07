@@ -140,6 +140,10 @@ class _MainScreenState extends State<MainScreen> {
                                 onTap: () {
                                     setState(() {
                                         selected = '';
+                                        FocusScopeNode currentFocus = FocusScope.of(context);
+                                        if (!currentFocus.hasPrimaryFocus) {
+                                            currentFocus.unfocus();
+                                        }
                                     });
                                 },
                                 child: ListView(
@@ -229,7 +233,14 @@ class _MainScreenState extends State<MainScreen> {
                             ),
                         ),
                         selected != '' ? Container(
-                            color: Colors.pinkAccent,
+                            decoration: BoxDecoration(
+                                color: Theme
+                                  .of(context)
+                                  .primaryColorLight,
+                                boxShadow: [
+                                    BoxShadow(blurRadius: 12)
+                                ],
+                            ),
                             child: VirtualKeyboard(
                                 fontSize: 17,
                                 type: keyboardType[selected],

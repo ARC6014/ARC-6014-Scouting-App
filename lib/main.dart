@@ -1,16 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scouting_app_rewrite/localization.dart';
-import 'package:scouting_app_rewrite/save.dart';
 import 'package:scouting_app_rewrite/screen/main.dart';
-import 'package:scouting_app_rewrite/type/checkbox.dart';
-import 'package:scouting_app_rewrite/type/counter.dart';
-import 'package:scouting_app_rewrite/type/selector.dart';
-import 'package:scouting_app_rewrite/type/stopwatch.dart';
-import 'package:scouting_app_rewrite/type/text.dart';
-import 'package:virtual_keyboard/virtual_keyboard.dart';
-
-import 'type/value.dart';
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -48,7 +37,7 @@ class MyApp extends StatelessWidget {
                 ),
                 fontFamily: 'Raleway',
             ),
-            home: MainScreen(title: 'Flutter Demo Home Page'),
+            home: MainScreen(title: 'Scouting App'),
         );
     }
 }
