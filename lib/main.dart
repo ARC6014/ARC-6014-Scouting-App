@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scouting_app_rewrite/save.dart';
 import 'package:scouting_app_rewrite/type/checkbox.dart';
 import 'package:scouting_app_rewrite/type/counter.dart';
 import 'package:scouting_app_rewrite/type/selector.dart';
@@ -31,6 +32,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+    Save save = Save();
     Map<String, Value> values = {
         'Stopwatch': Value<Duration>(),
         'Team Number': Value<String>(),
@@ -56,10 +58,14 @@ class _MyHomePageState extends State<MyHomePage> {
             appBar: AppBar(
                 title: Text(widget.title),
                 actions: <Widget>[
-                    IconButton(
-                        onPressed: () {
-                            print(values['Ball Count of Lower Hole / Teleop'].value);
-                        }, icon: Icon(Icons.print),
+                    Builder(
+                        builder: (context) {
+                            return IconButton(
+                                onPressed: () {
+                                    save.save(values.values, context);
+                                }, icon: Icon(Icons.print),
+                            );
+                        },
                     )
                 ],
             ),
