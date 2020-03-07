@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scouting_app_rewrite/localization.dart';
 import 'package:scouting_app_rewrite/save.dart';
 import 'package:scouting_app_rewrite/type/checkbox.dart';
 import 'package:scouting_app_rewrite/type/counter.dart';
@@ -99,10 +100,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     IconButton(
                         onPressed: () {
                             setState(() {
-                                locale.
+                                locale.lang = locale.lang == Language.en ? Language.tr : Language.en;
                             });
                         },
-                    )
+                        icon: Icon(Icons.translate),
+                    ),
                     IconButton(
                         onPressed: () {
                             save.save(values.values);
