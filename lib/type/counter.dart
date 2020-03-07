@@ -23,8 +23,15 @@ class _CounterInputState extends State<CounterInput> {
                 padding: EdgeInsets.all(8.0),
                 child: Column(
                     children: <Widget>[
-                        Text(locale.get(widget.title)),
+                        Text(
+                            locale.get(widget.title),
+                            style: Theme
+                              .of(context)
+                              .textTheme
+                              .headline6,
+                        ),
                         Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
                                 IconButton(
                                     icon: Icon(Icons.arrow_downward),
@@ -34,7 +41,13 @@ class _CounterInputState extends State<CounterInput> {
                                         });
                                     },
                                 ),
-                                Text(widget.value.value.toString()),
+                                Text(
+                                  widget.value.value.toString(),
+                                    style: Theme
+                                      .of(context)
+                                      .textTheme
+                                      .headline5,
+                                ),
                                 IconButton(
                                     icon: Icon(Icons.arrow_upward),
                                     onPressed: () {
