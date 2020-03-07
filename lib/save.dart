@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:scouting_app_rewrite/type/value.dart';
@@ -98,11 +97,15 @@ class Save {
     
     void save(Iterable<Value> values) {
         if (html.window.localStorage['data'] == '')
-            html.window.localStorage['data'] = values.map((e) => e.value).join('\t');
+            html.window.localStorage['data'] = values.map((e) {
+                if (e.value is String && e.value.toString().contains('\n')) return '"' + e.value + '"';
+                return e.value;
+            }).join('\t');
         else
-            html.window.localStorage['data'] += '\n' + values.map((e) => e.value).join('\t');
-        print(html.window.localStorage['data']);
-    
+            html.window.localStorage['data'] += '\n' + values.map((e) {
+                if (e.value is String && e.value.toString().contains('\n')) return '"' + e.value + '"';
+                return e.value;
+            }).join('\t');
     }
     
     void getClipboard(BuildContext context) {
@@ -110,8 +113,6 @@ class Save {
         Scaffold.of(context).showSnackBar(SnackBar(
             content: Text("Copied data to clipboard"),
         ));
-        print(html.window.localStorage['data']);
-    
     }
     
     void erase(BuildContext context) {
@@ -127,6 +128,5 @@ class Save {
                 },
             ),
         ));
-        print(html.window.localStorage['data']);
     }
 }

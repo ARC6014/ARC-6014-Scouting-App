@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:scouting_app_rewrite/localization.dart';
-import 'package:scouting_app_rewrite/type/input.dart';
 import 'package:scouting_app_rewrite/type/value.dart';
 
 
 
-class SelectorInput extends StatefulWidget implements Input {
+class SelectorInput extends StatefulWidget{
     final String title;
     final List<String> choices;
     final Value<String> value;
@@ -14,16 +13,10 @@ class SelectorInput extends StatefulWidget implements Input {
     
     @override
     _SelectorInputState createState() => _SelectorInputState();
-    
-    @override
-    Map<String, dynamic> toJson() {
-        return {title: value.value};
-    }
 }
 
 
 class _SelectorInputState extends State<SelectorInput> {
-    LocaleString locale = LocaleString();
     
     @override
     Widget build(BuildContext context) {

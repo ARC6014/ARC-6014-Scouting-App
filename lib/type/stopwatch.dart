@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:scouting_app_rewrite/localization.dart';
-import 'package:scouting_app_rewrite/type/input.dart';
 import 'package:scouting_app_rewrite/type/value.dart';
 
 
-class StopwatchInput extends StatefulWidget implements Input {
+class StopwatchInput extends StatefulWidget{
     final String title;
     final Value<Duration> value;
     
@@ -13,14 +12,9 @@ class StopwatchInput extends StatefulWidget implements Input {
     @override
     _StopwatchInputState createState() => _StopwatchInputState();
     
-    @override
-    Map<String, dynamic> toJson() {
-        return {title: value.value.toString()};
-    }
 }
 
 class _StopwatchInputState extends State<StopwatchInput> {
-    LocaleString locale = LocaleString();
     Stopwatch stopwatch = Stopwatch();
     
     List<String> text = ['Start the counter', 'End the counter', 'Disabled'];
@@ -28,6 +22,7 @@ class _StopwatchInputState extends State<StopwatchInput> {
     
     @override
     Widget build(BuildContext context) {
+        if (widget.value.value == Duration() && index == 2) index = 0;
         return Column(
             children: <Widget>[
                 Text(locale.get(widget.title)),

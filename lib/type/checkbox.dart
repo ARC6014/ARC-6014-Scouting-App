@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:scouting_app_rewrite/localization.dart';
-import 'package:scouting_app_rewrite/type/input.dart';
 import 'package:scouting_app_rewrite/type/value.dart';
 
-class CheckboxInput extends StatefulWidget implements Input {
+class CheckboxInput extends StatefulWidget {
     final String title;
     final Value<bool> value;
     
@@ -12,20 +11,9 @@ class CheckboxInput extends StatefulWidget implements Input {
     @override
     _CheckboxInputState createState() => _CheckboxInputState();
     
-    @override
-    Map<String, dynamic> toJson() {
-        return {title: value.value};
-    }
 }
 
 class _CheckboxInputState extends State<CheckboxInput> {
-    LocaleString locale = LocaleString();
-
-
-    @override
-    void initState() {
-        widget.value.set(false);
-    }
 
     @override
     Widget build(BuildContext context) {

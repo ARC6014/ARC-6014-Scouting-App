@@ -1,13 +1,8 @@
 class Value<T> {
     T value;
+    Value();
+    Value.withValue(T value) : this.value = value;
     void set(T value) {
         this.value = value;
-    }
-}
-
-class Values<T> {
-    List<T> values;
-    void add(T value) {
-        this.values.add(value);
     }
 }

@@ -199,3 +199,5 @@ class LocaleString {
         return local[item][lang];
     }
 }
+
+LocaleString locale = LocaleString();
