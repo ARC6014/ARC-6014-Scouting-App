@@ -58,15 +58,29 @@ class _MyHomePageState extends State<MyHomePage> {
             appBar: AppBar(
                 title: Text(widget.title),
                 actions: <Widget>[
+                    IconButton(
+                        onPressed: () {
+                            save.save(values.values);
+                        }, icon: Icon(Icons.print),
+                    ),
                     Builder(
                         builder: (context) {
                             return IconButton(
                                 onPressed: () {
-                                    save.save(values.values, context);
-                                }, icon: Icon(Icons.print),
+                                    save.getClipboard(context);
+                                }, icon: Icon(Icons.content_copy),
                             );
                         },
-                    )
+                    ),
+                    Builder(
+                        builder: (context) {
+                            return IconButton(
+                                onPressed: () {
+                                    save.erase(context);
+                                }, icon: Icon(Icons.clear),
+                            );
+                        },
+                    ),
                 ],
             ),
             body: Center(

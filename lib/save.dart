@@ -91,15 +91,42 @@ import 'package:universal_html/prefer_universal/html.dart' as html;
 }*/
 
 class Save {
-    void save(Iterable<Value> values, BuildContext context) {
-        if (html.window.localStorage['data'] == null)
+    
+    Save() {
+        html.window.localStorage['data'] ??= '';
+    }
+    
+    void save(Iterable<Value> values) {
+        if (html.window.localStorage['data'] == '')
             html.window.localStorage['data'] = values.map((e) => e.value).join('\t');
         else
             html.window.localStorage['data'] += '\n' + values.map((e) => e.value).join('\t');
-        
+        print(html.window.localStorage['data']);
+    
+    }
+    
+    void getClipboard(BuildContext context) {
         Clipboard.setData(ClipboardData(text: html.window.localStorage['data']));
         Scaffold.of(context).showSnackBar(SnackBar(
             content: Text("Copied data to clipboard"),
         ));
+        print(html.window.localStorage['data']);
+    
+    }
+    
+    void erase(BuildContext context) {
+        String temp = html.window.localStorage['data'];
+        html.window.localStorage['data'] = '';
+        Scaffold.of(context).showSnackBar(SnackBar(
+            duration: Duration(seconds: 6),
+            content: Text("Erased all data stored"),
+            action: SnackBarAction(
+                label: 'Undo',
+                onPressed: () {
+                    html.window.localStorage['data'] = temp;
+                },
+            ),
+        ));
+        print(html.window.localStorage['data']);
     }
 }
