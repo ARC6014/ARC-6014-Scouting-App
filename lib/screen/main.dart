@@ -20,7 +20,8 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     Save save = Save();
     Map<String, Value> values = {
-        'Stopwatch': Value<Duration>.withValue(Duration()),
+        'Match Number': Value<String>.withValue(''),
+        'Color': Value<String>.withValue(''),
         'Team Number': Value<String>.withValue(''),
         'Ball Count of Lower Hole / Teleop': Value<int>.withValue(0),
         'Ball Count of Upper Hole / Teleop': Value<int>.withValue(0),
@@ -38,6 +39,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     };
     
     Map<String, VirtualKeyboardType> keyboardType = {
+        'Match Number': VirtualKeyboardType.Alphanumeric,
         'Team Number': VirtualKeyboardType.Numeric,
         'Notes': VirtualKeyboardType.Alphanumeric,
     };
@@ -142,7 +144,8 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                                 save.save(values.values);
                                 setState(() {
                                     values = {
-                                        'Stopwatch': Value<Duration>.withValue(Duration()),
+                                        'Match Number': Value<String>.withValue(''),
+                                        'Color': Value<String>.withValue(''),
                                         'Team Number': Value<String>.withValue(''),
                                         'Ball Count of Lower Hole / Teleop': Value<int>.withValue(0),
                                         'Ball Count of Upper Hole / Teleop': Value<int>.withValue(0),
@@ -236,9 +239,25 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                                 },
                                 child: ListView(
                                     children: <Widget>[
-                                        StopwatchInput(
-                                            title: 'Stopwatch',
-                                            value: values['Stopwatch'],
+                                        TextInput(
+                                            title: 'Match Number',
+                                            value: values['Match Number'],
+                                            multiline: false,
+                                            onTap: () {
+                                                setState(() {
+                                                    selected = 'Match Number';
+                                                    text = values[selected].value;
+                                                });
+                                            },
+                                        ),
+                                        SelectorInput(
+                                            title: 'Color',
+                                            value: values['Color'],
+                                            choices: [
+                                                '',
+                                                'Red',
+                                                'Blue',
+                                            ],
                                         ),
                                         TextInput(
                                             title: 'Team Number',

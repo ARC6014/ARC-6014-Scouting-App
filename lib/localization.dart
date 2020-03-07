@@ -118,9 +118,6 @@ HashMap<String, HashMap<Language, String>> local = HashMap.from({
     'Blue': HashMap<Language, String>.from({
         Language.tr: 'Mavi',
     }),
-    '%counter': HashMap<Language, String>.from({
-        Language.tr: '%counter',
-    }),
     'Ball Count of Lower Hole / Teleop': HashMap<Language, String>.from({
         Language.tr: 'Alt Deliğin Top Miktarı / Teleop',
     }),
@@ -169,8 +166,11 @@ HashMap<String, HashMap<Language, String>> local = HashMap.from({
     'Disabled': HashMap<Language, String>.from({
         Language.tr: 'Kapalı',
     }),
-    'Stopwatch': HashMap<Language, String>.from({
-        Language.tr: 'Sayaç',
+    'Match Number': HashMap<Language, String>.from({
+        Language.tr: 'Maç Numarası',
+    }),
+    'Color': HashMap<Language, String>.from({
+        Language.tr: 'Renk',
     }),
 });
 /*
