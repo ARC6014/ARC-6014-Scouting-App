@@ -17,7 +17,7 @@ class MainScreen extends StatefulWidget {
     _MainScreenState createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
     Save save = Save();
     Map<String, Value> values = {
         'Stopwatch': Value<Duration>.withValue(Duration()),
@@ -46,6 +46,37 @@ class _MainScreenState extends State<MainScreen> {
     String text = '';
     
     bool shiftEnabled = false;
+    
+    AnimationController controller;
+    AnimationController otherController;
+    Animation<double> otherAnimation;
+    bool isOpen = false;
+    
+    
+    @override
+    void initState() {
+        super.initState();
+        controller = AnimationController(
+            duration: const Duration(milliseconds: 500),
+            vsync: this,
+        );
+        otherController = AnimationController(
+            duration: const Duration(milliseconds: 500),
+            vsync: this,
+        );
+        otherAnimation = CurvedAnimation(
+          parent: otherController,
+          curve: Curves.easeOutQuart
+        );
+    }
+    
+    
+    @override
+    void dispose() {
+        controller.dispose();
+        otherController.dispose();
+        super.dispose();
+    }
     
     _onKeyPress(VirtualKeyboardKey key) {
         if (key.keyType == VirtualKeyboardKeyType.String) {
@@ -80,56 +111,112 @@ class _MainScreenState extends State<MainScreen> {
             appBar: AppBar(
                 title: Text(widget.title),
                 actions: <Widget>[
-                    IconButton(
-                        onPressed: () {
-                            setState(() {
-                                locale.lang = locale.lang == Language.en ? Language.tr : Language.en;
-                            });
-                        },
-                        icon: Icon(Icons.translate),
-                    ),
-                    IconButton(
-                        onPressed: () {
-                            save.save(values.values);
-                            setState(() {
-                                values = {
-                                    'Stopwatch': Value<Duration>.withValue(Duration()),
-                                    'Team Number': Value<String>.withValue(''),
-                                    'Ball Count of Lower Hole / Teleop': Value<int>.withValue(0),
-                                    'Ball Count of Upper Hole / Teleop': Value<int>.withValue(0),
-                                    'Ball Count of Small Hole / Teleop': Value<int>.withValue(0),
-                                    'Ball Count of Lower Hole / Autonomous': Value<int>.withValue(0),
-                                    'Ball Count of Upper Hole / Autonomous': Value<int>.withValue(0),
-                                    'Ball Count of Small Hole / Autonomous': Value<int>.withValue(0),
-                                    'Staying in Balance': Value<bool>.withValue(false),
-                                    'Can Adjust Balance': Value<bool>.withValue(false),
-                                    'Moved Away From Line': Value<bool>.withValue(false),
-                                    'Did Trench Run': Value<bool>.withValue(false),
-                                    'Bar Climb Time': Value<Duration>.withValue(Duration()),
-                                    'Control Panel': Value<String>.withValue(''),
-                                    'Notes': Value<String>.withValue(''),
-                                };
-                            });
-                        }, icon: Icon(Icons.save),
-                    ),
-                    Builder(
-                        builder: (context) {
-                            return IconButton(
-                                onPressed: () {
-                                    save.getClipboard(context);
-                                }, icon: Icon(Icons.content_copy),
+                    AnimatedBuilder(
+                        animation: otherAnimation,
+                        builder: (BuildContext context, Widget child) {
+                            return Transform.scale(
+                                scale: otherAnimation.value,
+                                child: child,
                             );
                         },
+                        child: IconButton(
+                            onPressed: () {
+                                setState(() {
+                                    locale.lang = locale.lang == Language.en ? Language.tr : Language.en;
+                                });
+                            },
+                            icon: Icon(Icons.translate),
+                        ),
                     ),
-                    Builder(
-                        builder: (context) {
-                            return IconButton(
-                                onPressed: () {
-                                    save.erase(context);
-                                }, icon: Icon(Icons.clear),
+                    AnimatedBuilder(
+                        animation: otherAnimation,
+                        builder: (BuildContext context, Widget child) {
+                            return Transform.scale(
+                                scale: otherAnimation.value,
+                                child: child,
                             );
                         },
+                        child: IconButton(
+                            onPressed: () {
+                                save.save(values.values);
+                                setState(() {
+                                    values = {
+                                        'Stopwatch': Value<Duration>.withValue(Duration()),
+                                        'Team Number': Value<String>.withValue(''),
+                                        'Ball Count of Lower Hole / Teleop': Value<int>.withValue(0),
+                                        'Ball Count of Upper Hole / Teleop': Value<int>.withValue(0),
+                                        'Ball Count of Small Hole / Teleop': Value<int>.withValue(0),
+                                        'Ball Count of Lower Hole / Autonomous': Value<int>.withValue(0),
+                                        'Ball Count of Upper Hole / Autonomous': Value<int>.withValue(0),
+                                        'Ball Count of Small Hole / Autonomous': Value<int>.withValue(0),
+                                        'Staying in Balance': Value<bool>.withValue(false),
+                                        'Can Adjust Balance': Value<bool>.withValue(false),
+                                        'Moved Away From Line': Value<bool>.withValue(false),
+                                        'Did Trench Run': Value<bool>.withValue(false),
+                                        'Bar Climb Time': Value<Duration>.withValue(Duration()),
+                                        'Control Panel': Value<String>.withValue(''),
+                                        'Notes': Value<String>.withValue(''),
+                                    };
+                                });
+                            }, icon: Icon(Icons.save),
+                        ),
                     ),
+                    AnimatedBuilder(
+                        animation: otherAnimation,
+                        builder: (BuildContext context, Widget child) {
+                            return Transform.scale(
+                                scale: otherAnimation.value,
+                                child: child,
+                            );
+                        },
+                        child: Builder(
+                            builder: (context) {
+                                return IconButton(
+                                    onPressed: () {
+                                        save.getClipboard(context);
+                                    }, icon: Icon(Icons.content_copy),
+                                );
+                            },
+                        ),
+                    ),
+                    AnimatedBuilder(
+                        animation: otherAnimation,
+                        builder: (BuildContext context, Widget child) {
+                            return Transform.scale(
+                                scale: otherAnimation.value,
+                                child: child,
+                            );
+                        },
+                        child: Builder(
+                            builder: (context) {
+                                return IconButton(
+                                    onPressed: () {
+                                        save.erase(context);
+                                    }, icon: Icon(Icons.delete_forever),
+                                );
+                            },
+                        ),
+                    ),
+                    IconButton(
+                        icon: AnimatedIcon(
+                            progress: controller,
+                            icon: AnimatedIcons.menu_close,
+                        ),
+                        onPressed: () {
+                            setState(() {
+                                if (isOpen) {
+                                    isOpen = false;
+                                    controller.reverse();
+                                    otherController.reverse();
+                                }
+                                else {
+                                    isOpen = true;
+                                    controller.forward();
+                                    otherController.forward();
+                                }
+                            });
+                        },
+                    )
                 ],
             ),
             body: Center(

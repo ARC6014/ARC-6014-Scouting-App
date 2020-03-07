@@ -23,18 +23,21 @@ class _CounterInputState extends State<CounterInput> {
                 padding: EdgeInsets.all(8.0),
                 child: Column(
                     children: <Widget>[
-                        Text(
-                            locale.get(widget.title),
-                            style: Theme
-                              .of(context)
-                              .textTheme
-                              .headline6,
+                        Padding(
+                            padding: EdgeInsets.all(2.0),
+                            child: Text(
+                                locale.get(widget.title),
+                                style: Theme
+                                  .of(context)
+                                  .textTheme
+                                  .headline6,
+                            ),
                         ),
                         Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                                IconButton(
-                                    icon: Icon(Icons.arrow_downward),
+                                FlatButton(
+                                    child: Icon(Icons.arrow_downward),
                                     onPressed: () {
                                         setState(() {
                                             widget.value.set(widget.value.value - 1);
@@ -42,14 +45,14 @@ class _CounterInputState extends State<CounterInput> {
                                     },
                                 ),
                                 Text(
-                                  widget.value.value.toString(),
+                                    widget.value.value.toString(),
                                     style: Theme
                                       .of(context)
                                       .textTheme
                                       .headline5,
                                 ),
-                                IconButton(
-                                    icon: Icon(Icons.arrow_upward),
+                                FlatButton(
+                                    child: Icon(Icons.arrow_upward),
                                     onPressed: () {
                                         setState(() {
                                             widget.value.set(widget.value.value + 1);

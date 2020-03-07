@@ -41,7 +41,7 @@ class _StopwatchInputState extends State<StopwatchInput> {
                             color: Theme
                               .of(context)
                               .primaryColorLight,
-                            elevation: 4,
+                            elevation: 2,
                             onPressed: index < 2 ? () {
                                 setState(() {
                                     if (index == 0) {
