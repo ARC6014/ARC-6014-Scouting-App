@@ -24,7 +24,13 @@ class _SelectorInputState extends State<SelectorInput> {
                 padding: EdgeInsets.all(8.0),
                 child: Column(
                     children: <Widget>[
-                        Text(locale.get(widget.title)),
+                        Text(
+                            locale.get(widget.title),
+                            style: Theme
+                              .of(context)
+                              .textTheme
+                              .headline6,
+                        ),
                         DropdownButton<String>(
                             isExpanded: true,
                             value: widget.value.value,
@@ -33,10 +39,16 @@ class _SelectorInputState extends State<SelectorInput> {
                                     widget.value.set(value);
                                 });
                             },
-                            items: widget.choices.map<DropdownMenuItem<String>>((value) {
+                            items: widget.choices.map <DropdownMenuItem<String>>((value) {
                                 return DropdownMenuItem<String>(
                                     value: value,
-                                    child: Text(locale.get(value)),
+                                    child: Text(
+                                        locale.get(value),
+                                        style: Theme
+                                          .of(context)
+                                          .textTheme
+                                          .subtitle1,
+                                    ),
                                 );
                             }).toList(),
                         ),
