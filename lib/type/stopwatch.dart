@@ -18,11 +18,11 @@ class _StopwatchInputState extends State<StopwatchInput> {
     Stopwatch stopwatch = Stopwatch();
     
     List<String> text = ['Start the counter', 'End the counter', 'Disabled'];
-    int index = 0;
+
     
     @override
     Widget build(BuildContext context) {
-        if (widget.value.value == Duration() && index == 2) index = 0;
+        if (widget.value.value == Duration() && widget.value.extra == 2) widget.value.extra = 0;
         return Card(
             child: Padding(
                 padding: EdgeInsets.all(8.0),
@@ -42,22 +42,21 @@ class _StopwatchInputState extends State<StopwatchInput> {
                               .of(context)
                               .primaryColorLight,
                             elevation: 2,
-                            onPressed: index < 2 ? () {
+                            onPressed: widget.value.extra < 2 ? () {
                                 setState(() {
-                                    if (index == 0) {
-                                        index = 1;
+                                    if (widget.value.extra == 0) {
                                         stopwatch.start();
                                     }
-                                    else if (index == 1) {
+                                    else if (widget.value.extra == 1) {
                                         stopwatch.stop();
                                         widget.value.set(stopwatch.elapsed);
                                         stopwatch.reset();
-                                        index = 2;
                                     }
+                                    ++widget.value.extra;
                                 });
                             } : null,
                             child: Text(
-                                locale.get(text[index]),
+                                locale.get(text[widget.value.extra]),
                                 style: Theme
                                   .of(context)
                                   .textTheme

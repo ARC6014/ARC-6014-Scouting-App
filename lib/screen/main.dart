@@ -110,6 +110,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
         return Scaffold(
             appBar: AppBar(
                 title: Text(widget.title),
+                titleSpacing: 8,
                 actions: <Widget>[
                     AnimatedBuilder(
                         animation: otherAnimation,
