@@ -56,22 +56,55 @@ flutter:
     # For details regarding adding assets from package dependencies, see
     # https://flutter.dev/assets-and-images/#from-packages
 
-    # To add custom fonts to your application, add a fonts section here,
-    # in this "flutter" section. Each entry in this list should have a
-    # "family" key with the font family name, and a "fonts" key with a
-    # list giving the asset and other descriptors for the font. For
-    # example:
-    # fonts:
-    #   - family: Schyler
-    #     fonts:
-    #       - asset: fonts/Schyler-Regular.ttf
-    #       - asset: fonts/Schyler-Italic.ttf
-    #         style: italic
-    #   - family: Trajan Pro
-    #     fonts:
-    #       - asset: fonts/TrajanPro.ttf
-    #       - asset: fonts/TrajanPro_Bold.ttf
-    #         weight: 700
+    fonts:
+        -   family: Raleway
+            fonts:
+                -   asset: assets/fonts/Raleway-100.ttf
+                    weight: 100
+                -   asset: assets/fonts/Raleway-100i.ttf
+                    weight: 100
+                    style: italic
+                -   asset: assets/fonts/Raleway-200.ttf
+                    weight: 200
+                -   asset: assets/fonts/Raleway-200i.ttf
+                    weight: 200
+                    style: italic
+                -   asset: assets/fonts/Raleway-300.ttf
+                    weight: 300
+                -   asset: assets/fonts/Raleway-300i.ttf
+                    weight: 300
+                    style: italic
+                -   asset: assets/fonts/Raleway-400.ttf
+                    weight: 400
+                -   asset: assets/fonts/Raleway-400i.ttf
+                    weight: 400
+                    style: italic
+                -   asset: assets/fonts/Raleway-500.ttf
+                    weight: 500
+                -   asset: assets/fonts/Raleway-500i.ttf
+                    weight: 500
+                    style: italic
+                -   asset: assets/fonts/Raleway-600.ttf
+                    weight: 600
+                -   asset: assets/fonts/Raleway-600i.ttf
+                    weight: 600
+                    style: italic
+                -   asset: assets/fonts/Raleway-700.ttf
+                    weight: 700
+                -   asset: assets/fonts/Raleway-700i.ttf
+                    weight: 700
+                    style: italic
+                -   asset: assets/fonts/Raleway-800.ttf
+                    weight: 800
+                -   asset: assets/fonts/Raleway-800i.ttf
+                    weight: 800
+                    style: italic
+                -   asset: assets/fonts/Raleway-900.ttf
+                    weight: 900
+                -   asset: assets/fonts/Raleway-900i.ttf
+                    weight: 900
+                    style: italic
+
     #
     # For details regarding fonts from package dependencies,
     # see https://flutter.dev/custom-fonts/#from-packages
