@@ -358,6 +358,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                                 type: keyboardType[selected],
                                 // Callback for key press event
                                 onKeyPress: _onKeyPress,
+                                height: MediaQuery.of(context).size.height < 500 ? 200 : 300,
                             ),
                         ) : Container(),
                     ],
