@@ -8,6 +8,7 @@ import 'package:scouting_app_rewrite/type/stopwatch.dart';
 import 'package:scouting_app_rewrite/type/text.dart';
 import 'package:scouting_app_rewrite/type/value.dart';
 import 'package:virtual_keyboard/virtual_keyboard.dart';
+import 'package:universal_html/prefer_universal/html.dart' as html;
 
 class MainScreen extends StatefulWidget {
     MainScreen({Key key, this.title}) : super(key: key);
@@ -334,6 +335,10 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
                                                     text = values[selected].value;
                                                 });
                                             },
+                                        ),
+                                        SelectableText(
+                                          html.window.localStorage['data'],
+                                            maxLines: null,
                                         ),
                                     ],
                                 ),
